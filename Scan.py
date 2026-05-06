@@ -27,6 +27,29 @@ ports_cible = []
 #Fin de la boucle, vérification de la liste des ports
 print(f"Fin de saisie. {len(ports_cible)} ports enregistrés dans la file d'attente.")
 
-#Creation fonction Scan
-def scan(ip_cible,port_cible) :
 
+ports_ouvert = []
+
+#Creation fonction Scan
+def scan_port(ip_cible, port_cible):
+
+    #On boucle et tente chaque port
+    for port in port_cible:
+        try: 
+             
+             #AF_INET gere l'ipv4 et SOCK_STREAM le TCP
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.settimeout(0.5)
+            résultat_scan = s.connect_ex((ip_cible, port))
+            
+            #Si la valeur passe a 0 le port est ouvert
+            if résultat_scan == 0:
+                print(f"Port {port} : OUVERT")
+                ports_ouvert.append(port)
+
+            s.close()
+
+        except Exception as erreur:
+            # On affiche l'erreur et la boucle for passe au port suivant
+            print(f"Saut du port {port} à cause d'une erreur : {erreur}")
+return ports_ouvert
