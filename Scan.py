@@ -54,9 +54,9 @@ def scan_port(ip_cible, port_cible):
             print(f"Saut du port {port} à cause d'une erreur : {erreur}")
 return ports_ouvert
 
-def export_ports(ports_ouvert, file_name="export.txt"):
+def export_ports(ports_ouvert, file_name="/tmp/scan_results.txt"):
     try:
-        with open(file_name, "w") as export:
+        with open(file_name, "w") as file_name :
             # On écrit un en-tête pour le rapport
             export.write("--- RESULTATS DU SCAN ---\n")
             
