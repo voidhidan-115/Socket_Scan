@@ -1,0 +1,32 @@
+import socket 
+
+#Creation de la variable addresse ip 
+ip_cible = input("Entrez l'ip cible") 
+
+if "." not in ip_cible:
+    print("Veuillez rentrez une ip valide")
+    exit()
+
+#Creation de la liste des ports à scanner 
+ports_cible = []
+
+#Creation de la boucle d'ajout 
+ while True: 
+    port = input("Port : ")
+
+#Break de la boucle si entier vide
+    if port == "":
+        break 
+#Si la saisie est bien un nombre strg conversion en int avant d'ajouter a la liste
+    if port.isdigit():
+        ports_cible.append(int(port))
+    
+    else :
+        print("Ce n'est pas un nombre")
+
+#Fin de la boucle, vérification de la liste des ports
+print(f"Fin de saisie. {len(ports_cible)} ports enregistrés dans la file d'attente.")
+
+#Creation fonction Scan
+def scan(ip_cible,port_cible) :
+
