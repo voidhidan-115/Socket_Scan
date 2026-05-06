@@ -53,3 +53,17 @@ def scan_port(ip_cible, port_cible):
             # On affiche l'erreur et la boucle for passe au port suivant
             print(f"Saut du port {port} à cause d'une erreur : {erreur}")
 return ports_ouvert
+
+def export_ports(ports_ouvert, file_name="export.txt"):
+    try:
+        with open(file_name, "w") as export:
+            # On écrit un en-tête pour le rapport
+            export.write("--- RESULTATS DU SCAN ---\n")
+            
+            # On boucle sur la liste pour écrire chaque port un par un
+            for port in ports_ouvert:
+                export.write(f"Port ouvert : {port}\n")
+                
+        print(f" Succès : {len(ports_ouvert)} ports exportés dans {file_name}")
+    except Exception as e:
+        print(f" Erreur lors de l'écriture du fichier : {e}")
