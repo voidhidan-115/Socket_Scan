@@ -67,3 +67,20 @@ def export_ports(ports_ouvert, file_name="/tmp/scan_results.txt"):
         print(f" Succès : {len(ports_ouvert)} ports exportés dans {file_name}")
     except Exception as e:
         print(f" Erreur lors de l'écriture du fichier : {e}")
+
+# --- POINT D'ENTRÉE DU SCRIPT (MAIN) ---
+
+if __name__ == "__main__":
+    print("  AUDIT DE RECONNAISSANCE TCP  ")
+
+    
+    # On lance le scan et on récupère les ports ouverts
+    resultats = scan_port(ip_cible, ports_cible)
+    
+    # On exporte les résultats si on en a trouvé
+    if resultats:
+        export_ports(resultats)
+    else:
+        print(" Aucun port ouvert détecté. Aucun rapport généré.")
+        
+    print("Ports ouverts voir txt.")
